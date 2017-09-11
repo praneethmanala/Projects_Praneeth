@@ -1,0 +1,77 @@
+
+facebook.com
+for Email or Phone
+
+X path
+******
+//input[@id='email']
+//input[@class='inputtext']
+//input[@name='email']
+//input[@id='email' and @name='email' and @class='inputtext']
+
+CSS
+****
+#email
+.inputext
+input[id='email']
+input[id='email'][name='email][class='inputtext']
+ 
+******************************************************************
+Xpath=//input[starts-with(@id,'u')]
+      //input[starts-with(@class,'inputtext')]
+Css  =input[id^='u']
+      input[class^='inputtext']
+******************************************************************
+For Day(Following Sibling)
+*******
+X-path == //select[@id='day']
+CSS== #day
+**************************************
+For Month
+********
+X-path=== //select[@id='day']/following-sibling::select[1]
+For Year
+*******
+X-path=== //select[@id='day']/following-sibling::select[2]
+***********************************************************************
+For year (Preceding Sibling)
+*******
+X-path==== //select[@id='year']
+
+for Month
+********
+X-path==== //select[@id='year']/preceding-sibling::select[1]
+
+for Day
+*******
+
+X-path==== //select[@id='year']/preceding-sibling::select[2]
+**********************************************************************
+For Radio Button
+**********
+X-paht for FeMale === //span[@data-name='gender_wrapper']/span[1]/input
+Css for Female === span[data-name='gender_wrapper']>:nth-child(1)>:nth-child(1)
+
+X-path for Male === //span[@data-name='gender_wrapper']/span[2]/input
+Css for male === span[data-name='gender_wrapper']>:nth-child(2)>:nth-child(1)
+
+*******************************************************************************
+femaleText
+*********
+X-path=== //*[contains(text(),'Female')]
+
+Male Text                          
+*********
+x-paht === //*[contains(text(),'Male')]
+
+Birthday
+********
+X-path ==== //*[contains(text(),'Birthday')]
+**************************************************************************
+For Facebook Footer
+******************
+X-path== .//*[@id='pageFooter']/div[2]/table/tbody/tr/td
+
+Css ==== [id='pageFooter']>:nth-child(3)>table>tbody>tr>td
+
+****************************************************************************

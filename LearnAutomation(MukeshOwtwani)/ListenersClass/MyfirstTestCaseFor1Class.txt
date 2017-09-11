@@ -1,0 +1,20 @@
+package ListenersDemo;
+
+import org.junit.Assert;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+
+@Listeners(ListenersDemo.TestNGlisteners.class)
+public class MyFirstTestCase {
+
+	@Test(priority =1)
+	public   void GoogleTitleVerify(){
+		System.out.println("Page title is Google");
+		
+	}
+	@Test(priority =2)
+	public   void GoogleTitle(){
+		System.out.println("Page title is Google");
+		Assert.assertTrue(false);
+	}
+}

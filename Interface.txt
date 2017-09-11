@@ -1,0 +1,57 @@
+
+
+package selenium;
+
+public interface InterfaceSelenium {
+
+	int x=10;
+	
+	public void add();
+	public void sub();
+	
+	
+	
+}
+*******************************************************************
+package selenium;
+
+public class Interface1 implements InterfaceSelenium{
+
+	public static void main(String[] args) {
+		
+		//Case1::child Refarence and parent Object
+		
+		/*InterfaceSelenium obj=new Interface1();
+		obj.add();
+		obj.sub();*/
+		
+	   //Case2::child Refarence and chile Object
+		Interface1 obj = new Interface1();
+		obj.add();
+		obj.mul();
+		obj.sub();
+		obj.div();
+		
+	  //Case3 and Case4 :: parent object i.e interface object	is invalid case
+	}
+	public void mul(){
+		
+		System.out.println("Multiplication");
+	}
+    public void div(){
+		
+		System.out.println("Devision");
+	}
+	@Override
+	public void add() {
+		// TODO Auto-generated method stub
+		System.out.println("Addision");
+	}
+	@Override
+	public void sub() {
+		// TODO Auto-generated method stub
+		System.out.println("Substraction");
+	}
+
+}
+******************************************************************************************************************

@@ -1,0 +1,330 @@
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+--------------------------------------------------------------------Method1
+-----------------------------------------------------------------------------	
+public class Sarvodaya {
+	public static WebDriver driver;
+	public void launch(){
+		 System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+		    driver = new ChromeDriver();
+	        driver.get("http://sarvodaya.laksanasoft.com/");
+	        
+	 }
+	 
+	 public void login(){
+		 driver.findElement(By.xpath(".//*[@id='txtUserName']")).sendKeys("laksanait");
+	       // Thread.sleep(3000);
+	        driver.findElement(By.xpath(".//*[@id='txtPassword']")).sendKeys("laksanait@123");
+	      //  Thread.sleep(2000);
+	        driver.findElement(By.xpath(".//*[@id='txtPassword']")).sendKeys("laksanait@123");
+	     //   Thread.sleep(2000);
+	        Select Dropdown = new Select(driver.findElement(By.xpath(".//*[@id='ddlCompanyName']")));
+	        Dropdown.selectByVisibleText("LAKSANA IT SOLUTIONS PRIVATE LIMITED");
+	      //  Thread.sleep(2000);
+	        driver.findElement(By.xpath(".//*[@id='btnLogin']")).click();
+	 }  
+ 
+	 public void close(){
+		 if(! driver.toString().contains("null"));
+		 driver.close();
+	 }
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		Sarvodaya sarvo = new Sarvodaya();
+		sarvo.launch();
+		sarvo.login();
+		sarvo.close();
+---------------------------------------------------------------------Method2
+-------------------------------------------------------------------------------
+public class Sarvodaya {
+	public static WebDriver driver;
+	
+	/* public void launch(){
+		 System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+			WebDriver driver = new ChromeDriver();
+	        driver.get("http://sarvodaya.laksanasoft.com/");
+	        
+	 }
+	 *//*
+	 public void login(){
+		 driver.findElement(By.xpath(".//*[@id='txtUserName']")).sendKeys("laksanait");
+	       // Thread.sleep(3000);
+	        driver.findElement(By.xpath(".//*[@id='txtPassword']")).sendKeys("laksanait@123");
+	      //  Thread.sleep(2000);
+	        driver.findElement(By.xpath(".//*[@id='txtPassword']")).sendKeys("laksanait@123");
+	     //   Thread.sleep(2000);
+	        Select Dropdown = new Select(driver.findElement(By.xpath(".//*[@id='ddlCompanyName']")));
+	        Dropdown.selectByVisibleText("LAKSANA IT SOLUTIONS PRIVATE LIMITED");
+	      //  Thread.sleep(2000);
+	        driver.findElement(By.xpath(".//*[@id='btnLogin']")).click();
+	 }  */
+ 
+	/* public void close(){
+		 if(! driver.toString().contains("null"));
+		 driver.close();
+	 }*/
+
+	public static void main(String[] args) throws InterruptedException {
+		
+	//1) Launch the Browser
+		
+		 System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+		 WebDriver driver = new ChromeDriver();
+         driver.get("http://sarvodaya.laksanasoft.com/");
+    //2) Login
+         
+         driver.findElement(By.xpath(".//*[@id='txtUserName']")).sendKeys("laksanait"); 
+	     driver.findElement(By.xpath(".//*[@id='txtPassword']")).sendKeys("laksanait@123");
+	     driver.findElement(By.xpath(".//*[@id='txtPassword']")).sendKeys("laksanait@123");
+	     Select Dropdown = new Select(driver.findElement(By.xpath(".//*[@id='ddlCompanyName']")));
+	     Dropdown.selectByVisibleText("LAKSANA IT SOLUTIONS PRIVATE LIMITED");
+	     driver.findElement(By.xpath(".//*[@id='btnLogin']")).click();
+         driver.manage().window().maximize();
+    //3) Administrator
+    //    a) Company Information 
+         
+        /* driver.findElement(By.xpath(".//*[@id='Administrator']")).click();
+         driver.findElement(By.xpath(".//*[@id='Companyinformation']/a")).click();
+         driver.findElement(By.linkText("Add Company Info")).click();
+         driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtcompanyname']")).sendKeys("SDMicroPolymors Company Ltd");
+         driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtaddressone']")).sendKeys("#1-161,Adithya Apartments,Durganagar Colony");
+         driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtaddressone']")).sendKeys("#1-161,Adithya Apartments,Durganagar Colony");
+         driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtstate']")).sendKeys("Telangana");
+         driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtpincode']")).sendKeys("500082");
+         driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtTINNO']")).sendKeys("50008278548");
+         driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnSave']")).click();
+         Alert alert = driver.switchTo().alert();
+         alert.accept();
+         Thread.sleep(2000);
+         
+    //    b) User Registration
+         
+        driver.findElement(By.xpath(".//*[@id='UserRegistration']/a/span")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("ContentPlaceHolder1_btnAdd")).click();
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtloginid']")).sendKeys("SDMicropolymers");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtpassword']")).sendKeys("praneeth@1");
+        Select drop1 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlusertype']")));
+        drop1.selectByVisibleText("User");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtusername']")).sendKeys("praneethkumar");
+        Select drop2 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlstatus']")));
+        drop2.selectByVisibleText("Active");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_cblModules_0']")).click();
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnSave']")).click();
+        driver.switchTo().alert().accept(); */
+        
+   // 4) Sales and Marketing
+   //     a) Customers   
+        
+     // driver.findElement(By.xpath(".//*[@id='brand']/img")).click();
+     // Thread.sleep(2000);
+        driver.findElement(By.xpath(".//*[@id='Sales']/label")).click();		
+        Thread.sleep(2000);
+        driver.findElement(By.xpath(".//*[@id='sales']/a/span[1]")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath(".//*[@id='sales']/ul/li[1]/a")).click();
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_myCustomer_btnAdd']")).click();
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtCustName']")).sendKeys("Adhitya Bakery");
+        Select drop3 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlCustomerType']")));
+        drop3.selectByVisibleText("Public Sector");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grvCustomerAddressDetail_txtAddrId_0']")).sendKeys("01"); 
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grvCustomerAddressDetail_btnAddDetails_0']")).click();
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtAddress1']")).sendKeys("Hyderabad");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtCity']")).sendKeys("Hyderabad");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtState']")).sendKeys("Telangana");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtPincode']")).sendKeys("500082");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnNewAddDetails']")).click();
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grvCustomerAddressDetail_txtPhoneNo_0']")).sendKeys("04065996569");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grvCustomerAddressDetail_txtFaxNo_0']")).sendKeys("04065996565");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grvCustomerAddressDetail_txtContactPerson_0']")).sendKeys("Praneeth");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grvCustomerAddressDetail_txtDesignation_0']")).sendKeys("SalesManager");  
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grvCustomerAddressDetail_txtMobileNo_0']")).sendKeys("9849708111");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grvCustomerAddressDetail_txtEmailID_0']")).sendKeys("praneth@gmail.com");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtTINNO']")).sendKeys("87548596587");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnSave']")).click();
+        driver.switchTo().alert().accept();
+        driver.findElement(By.xpath(".//*[@id='sales']/a/span[1]")).click();
+        Thread.sleep(2000);
+        
+   //     b) Finished Goods
+
+        driver.findElement(By.xpath(".//*[@id='Sales']/label")).click();
+      //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.findElement(By.xpath(".//*[@id='sales']/a")).click();
+        driver.findElement(By.xpath(".//*[@id='sales']/ul/li[2]/a")).click();
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_Finishedgoods_btnAdd']")).click();
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtprodcode']")).sendKeys("WES15");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtprodDescription']")).sendKeys("TrianangularCups");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtprodDescription']")).sendKeys("TrianangularCups");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtcavity']")).sendKeys("14");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtthikness']")).sendKeys("16");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtwtpc']")).sendKeys("0.002857143");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnColor']")).click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtclname']")).sendKeys("REWDS");
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btncolorSave']")).click();
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btncolorSave']")).click();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.switchTo().alert().accept();
+      //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+     // driver.switchTo().alert().accept();
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btncolorClose']")).click();
+        Select drop5 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlcolor']")));
+        drop5.selectByVisibleText("CL");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtsmallbags']")).sendKeys("300");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtbluebags']")).sendKeys("2700");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txttvbox']")).sendKeys("12600");
+     // driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("window.scrollBy(0,750)", "");
+        
+      /*driver.findElement(By.id("ContentPlaceHolder1_btnRollsize")).click();
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtrollsizepopup']")).sendKeys("540");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btmrollsizesave']")).click();
+        driver.switchTo().alert().accept();
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btmrollsizecancle']")).click();*/
+        Select drop6 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlrollsize']")));
+        drop6.selectByVisibleText("483");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtshotwt']")).sendKeys("0.04");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtprodtday']")).sendKeys("2400");
+     /* driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnformdie']")).click();
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtmouldcode12']")).sendKeys("1");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnformingSave']")).click();
+        driver.switchTo().alert().accept();
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnbtnformingClose']")).click(); */
+        Select drop7 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlforming']")));
+        drop7.selectByVisibleText("1");
+        
+     /* driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnCutting']")).click();
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtmouldcode12']")).sendKeys("2");
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnCuttingSave']")).click();
+        driver.switchTo().alert().accept();
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnbtnformingClose']")).click();*/
+        Select drop8 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlcutting']")));
+        drop8.selectByVisibleText("2");
+        
+     /* JavascriptExecutor jse1 = (JavascriptExecutor)driver;
+        jse1.executeScript("Window.ScrollBy(0,250)"," ");*/
+        
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnSave']")).click();
+        driver.switchTo().alert().accept(); 
+        
+        JavascriptExecutor jse2 = (JavascriptExecutor)driver;
+        jse2.executeScript("Window.scrollBy(0,-1000)"," ");
+        
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        driver.findElement(By.xpath(".//*[@id='sales']/a/span[1]")).click();
+        
+  //     c) Quotations
+
+	  
+            driver.findElement(By.xpath(".//*[@id='Sales']/label")).click();        
+	    driver.findElement(By.xpath(".//*[@id='sales']/a/span[1]")).click();
+         // driver.findElement(By.xpath(".//*[@id='sales']/ul/li[2]/a")).click();
+            driver.findElement(By.xpath(".//*[@id='sales']/ul/li[4]/a")).click();
+            driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_webquotes_btnAdd']")).click();
+         // driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtCustCode']")).sendKeys("000001");
+	  //driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        /*driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnCustomerCode']")).click();
+        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grdCustomer_lbkEdit_0']")).click();
+        driver.switchTo().alert().accept();*/
+	    Select drop9 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grdQuotItemDetails_ddlProduct_Code_0']")));
+	    drop9.selectByVisibleText("BR12");
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grdQuotItemDetails_txtUOM_0']")).sendKeys("KG");
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grdQuotItemDetails_txtQty_0']")).sendKeys("100");
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grdQuotItemDetails_txtUnitPrice_0']")).sendKeys("150");
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grdQuotItemDetails_txtUnitPrice_0']")).sendKeys("150");
+	    JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    jse.executeScript("scroll(0,500);");
+	    
+	    Select drop10 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlDelivery_Schedule']")));
+	    drop10.selectByVisibleText("Within 7 Days from SO Date");
+	    
+	    Select drop11 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlPayment_Terms']")));
+	    drop11.selectByVisibleText("LC");
+	
+	    Select drop12 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddltaxcode']")));
+	    drop12.selectByVisibleText("ED12.5");
+	    
+	    Select drop13 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlValidity']")));
+	    drop13.selectByVisibleText("3 Days");
+	    
+	    Select drop14 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlStatus']")));
+	    drop14.selectByVisibleText("Approved");
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnSubmit']")).click();
+	    JavascriptExecutor jse1 = (JavascriptExecutor)driver;
+	    jse1.executeScript("scroll(0,-500);");
+	    driver.switchTo().alert().accept();
+	    
+  //	  //	  d) Sale Order 
+         
+	    driver.findElement(By.xpath(".//*[@id='Sales']/label")).click();  
+	    driver.findElement(By.xpath(".//*[@id='sales']/a/span[1]")).click();
+	    driver.findElement(By.xpath(".//*[@id='sales']/ul/li[6]/a")).click();
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_MYSOrder_btnAdd']")).click();
+	 // driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtCustCode']")).sendKeys("000001");
+	    Thread.sleep(3000);
+	 // driver.switchTo().alert().dismiss();
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtCustPONoDate']")).sendKeys("QU212545");
+	    Select drop18 =new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grdSaleOrder_ItemDetails_ddlProduct_Code_0']")));
+	    drop18.selectByVisibleText("BR12");
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grdSaleOrder_ItemDetails_txtUOM_0']")).sendKeys("KG");
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grdSaleOrder_ItemDetails_txtQty_0']")).sendKeys("100");
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grdSaleOrder_ItemDetails_txtUnit_Price_0']")).sendKeys("100");
+	    driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+	    JavascriptExecutor jse2 = (JavascriptExecutor)driver;
+	    jse2.executeScript("scroll(0,500);");
+	     
+	    Select drop19 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddltaxcode']")));
+	    drop19.selectByVisibleText("ED12.5");    
+	    Select drop15 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlPrice_Basis']")));
+	    drop15.selectByVisibleText("Free Delivery");
+	    Select drop21 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlPayment_Terms']")));
+	    drop21.selectByVisibleText("100% Advance");
+	    Select drop22 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlDelivery_Schedule']")));
+	    drop22.selectByVisibleText("Within 7 Days from SO Date");
+	    
+	    JavascriptExecutor jse3 = (JavascriptExecutor)driver;
+	    jse3.executeScript("scroll(0,500);");
+	    
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtDelivaryDate']")).sendKeys("26-08-2016");
+	    
+	    Select drop16 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlStatus']")));
+	    drop16.selectByVisibleText("Cleared for Shipment");
+	    driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnSubmit']")).click();
+	    driver.switchTo().alert().accept();
+	    driver.switchTo().alert().dismiss();
+	    JavascriptExecutor jse4 = (JavascriptExecutor)driver;
+	    jse4.executeScript("scroll(0,-1000);");	
+	    		
+  //	  e) Invoice
+	    
+	    driver.findElement(By.xpath(".//*[@id='Invoicing']/a/span[1]")).click();
+	    driver.findElement(By.xpath(".//*[@id='Invoicing']/ul/li/a")).click();
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_Inv_btnAdd']")).click();
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtSONumber']")).sendKeys("000001");
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtCarriersName']")).sendKeys("Navatha");
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtVehicleNo']")).sendKeys("AP29TB0877");
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtHeadTaffifNumber']")).sendKeys("87654231");
+	    driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_grdInvoice_Child_txtDcQty_0']")).sendKeys("100");
+	    
+	    Select drop17 = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlPrintType']")));
+	    drop17.selectByVisibleText("Normal Print");
+	    driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnSave']")).click();
+	    
+	
+	}
+	
+
+}

@@ -1,0 +1,85 @@
+package sample1;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class CollegeProgrames extends Program1 {
+       public static  WebDriver driver;
+	
+      public void launch(){
+        	 System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+    		 driver= new ChromeDriver();
+    		 driver.get("http://test2.laksanasoft.com/login.aspx");
+         }
+         
+         
+	  public void login() throws InterruptedException{
+		    driver.findElement(By.id("txtUserName")).sendKeys("admin");
+		    driver.findElement(By.id("txtPassword")).sendKeys("admin@1");
+		    driver.findElement(By.id("btnLogin")).click();
+		    Thread.sleep(2000);
+	}
+	  public void Programes() throws InterruptedException{
+		  driver.findElement(By.xpath("html/body/div[1]/aside[1]/section/ul/li[2]/a/span")).click();
+		  driver.findElement(By.xpath("html/body/div[1]/aside[1]/section/ul/li[2]/ul/li[1]/a")).click();
+		  driver.findElement(By.linkText("Create New")).click();
+		  Thread.sleep(2000);
+		  WebElement element1 = driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtProgCateName']"));
+		  element1.sendKeys(Keys.TAB);
+		  driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtProgCateName']")).sendKeys("PhDM");
+		  Thread.sleep(2000);
+		  driver.findElement(By.id("ContentPlaceHolder1_btnSave")).click();
+                  driver.switchTo().alert().accept();
+		  driver.findElement(By.linkText("List")).click();
+		  
+	  }
+	   public void ListofProgrames(){
+		   driver.findElement(By.xpath("html/body/div[1]/aside[1]/section/ul/li[2]/a/span")).click();
+		   driver.findElement(By.xpath("html/body/div[1]/aside[1]/section/ul/li[2]/ul/li[2]/a")).click();
+		   driver.findElement(By.linkText("Create New")).click();
+		   WebElement element2 = driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtProgrammeName']"));
+		   element2.sendKeys(Keys.TAB);
+		   driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtProgrammeName']")).sendKeys("PhDMaths");                Select pc=new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlProgrammeCategory']")));
+		   pc.selectByVisibleText("PhDM");
+		   driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnSave']")).click();
+		   driver.switchTo().alert().accept();
+		   driver.findElement(By.linkText("List")).click();
+	   }
+	   public void Group(){
+		   driver.findElement(By.xpath("html/body/div[1]/aside[1]/section/ul/li[2]/a/span")).click();
+		   driver.findElement(By.xpath("html/body/div[1]/aside[1]/section/ul/li[2]/ul/li[3]/a")).click();
+		   driver.findElement(By.linkText("Create New")).click();
+	  WebElement element3 = driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtCourseCategoryName']"));
+		   element3.sendKeys(Keys.TAB);
+          driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtCourseCategoryName']")).sendKeys("PhDMaths");
+		   WebElement element4 = driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtgroupcode']"));
+		   element4.sendKeys(Keys.TAB);
+		   driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtgroupcode']")).sendKeys("9111");
+          Select programe=new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlCourseProgramm']")));
+		   programe.selectByVisibleText("PhDMaths");
+		   driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnSave']")).click();
+		   driver.switchTo().alert().accept(); 
+		   driver.findElement(By.linkText("List")).click();
+	   }  
+		   
+	   
+	   
+	   
+	   
+	
+	  public static void main(String[] args) throws InterruptedException {
+		 CollegeProgrames College = new  CollegeProgrames();
+		 College.launch();
+		 College.login();
+		 driver.manage().window().maximize();
+		College.Programes();
+		College.ListofProgrames();
+		College.Group(); 
+	}
+	}
+
+

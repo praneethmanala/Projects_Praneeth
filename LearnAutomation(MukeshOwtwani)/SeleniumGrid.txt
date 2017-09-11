@@ -1,0 +1,39 @@
+
+1) java -jar selenium-server-standalone-2.53.0.jar -role hub
+2) java -jar selenium-server-standalone-2.45.0.jar -role node -hub 
+localhost:4444/grid/register/ -Dwebdriver.chrome.driver="C:\\chromedriver.exe"
+
+
+in Google type "localhost:4444/grid/console"
+
+
+
+
+
+
+
+
+**********************************************************
+package seleniumgrid;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.Test;
+
+public class SeleniumGrid {
+    @Test
+	public void test1() throws MalformedURLException
+	{
+		DesiredCapabilities cap =DesiredCapabilities.firefox();
+		cap.setPlatform(Platform.WINDOWS);
+		cap.setBrowserName("firefox");
+		URL url =new URL("http://192.168.0.104:5555/wd/hub");
+		WebDriver driver = new RemoteWebDriver(new URL("http://192.168.0.104:5555/wd/hub"), cap);
+		driver.navigate().to("http://www.google.com");
+	}
+}

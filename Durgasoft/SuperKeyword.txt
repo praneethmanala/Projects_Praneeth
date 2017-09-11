@@ -1,0 +1,32 @@
+1
+
+package com.thiskeyword.selenium;
+
+public class ThisKeyword {
+
+	public void add(){
+		
+		System.out.println("This is A class add function");
+	}
+}
+***********************************************
+2
+
+package com.thiskeyword.selenium;
+
+public class Bclass extends ThisKeyword{
+
+	public void add(){
+		System.out.println("This is B class add function");
+	}
+	public void show(){
+		super.add();
+	}
+	public static void main(String[] args) {
+		
+		Bclass b= new Bclass();
+		b.add();
+		b.show();
+	}
+}
+**************************************************************

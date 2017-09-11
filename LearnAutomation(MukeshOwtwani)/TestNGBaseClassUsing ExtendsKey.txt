@@ -1,0 +1,57 @@
+Programme1
+**********
+package baseClass;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Reporter;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+
+
+public class Class1 {
+	
+	WebDriver driver;
+	
+ @BeforeClass	
+ public void lounch()
+{   
+	Reporter.log("==============Browser Launched================",true);
+	System.setProperty("webdriver.chrome.driver", "E:\\chromedriver.exe");
+	driver = new ChromeDriver();
+	driver.get("https://mail.google.com");
+	driver.manage().window().maximize();
+	Reporter.log("============Application Started==============",true);
+	
+}
+ @AfterClass
+ public void CloseApplication()
+ {
+	 driver.quit();
+	 Reporter.log("================Application Closed===============",true);
+ }
+}
+******************************************************************************************
+programme2
+**********
+package baseClass;
+
+import org.openqa.selenium.By;
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class Class2 extends Class1{
+	
+    @Test
+	public void login() throws Exception
+	{   
+    	Reporter.log("==============Login started=============",true);
+		driver.findElement(By.id("Email")).sendKeys("praneethmanala");
+		driver.findElement(By.id("next")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.id("Passwd")).sendKeys("Praneeth@1");
+		driver.findElement(By.id("signIn")).click();
+		Reporter.log("==============Login end=============",true);
+	}
+}
+******************************************************************************

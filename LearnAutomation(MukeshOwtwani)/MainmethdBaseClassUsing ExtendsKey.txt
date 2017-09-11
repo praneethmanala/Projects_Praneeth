@@ -1,0 +1,61 @@
+Programme1
+**********
+package baseClass;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Reporter;
+
+
+
+public class Class3 {
+	public static WebDriver driver;
+       
+      public void lounch1(String url)
+{   
+    	  Reporter.log("==============Browser Launched================",true);
+	System.setProperty("webdriver.chrome.driver", "E:\\chromedriver.exe");
+	driver = new ChromeDriver();
+	driver.get(url);
+	driver.manage().window().maximize();
+	Reporter.log("============Application Started==============",true);
+}
+      
+      public void login(String username,String password) throws InterruptedException
+      {
+    	  Reporter.log("==============Login started=============",true);
+  		driver.findElement(By.id("Email")).sendKeys(username);
+  		driver.findElement(By.id("next")).click();
+  		Thread.sleep(3000);
+  		driver.findElement(By.id("Passwd")).sendKeys(password);
+  		driver.findElement(By.id("signIn")).click();
+  		Reporter.log("==============Login end=============",true);
+      }
+ 
+ public void CloseApplication1()
+ {
+	 driver.close();
+	 Reporter.log("================Application Closed===============",true);
+ }
+}
+*************************************************************************************************
+programme2
+**********
+package baseClass;
+
+
+
+public class Class4 extends Class3{
+	
+	public static void main(String [] args) throws InterruptedException
+	{         
+		Class3 cls =new Class3();
+		cls.lounch1("https://mail.google.com");
+
+    	cls.login("praneethmanala", "Praneeth@1");
+		
+		cls.CloseApplication1();
+	}
+}
+**************************************************************************************************

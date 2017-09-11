@@ -1,0 +1,25 @@
+FaceBook Example(IN Chrome)
+**************************
+
+X-path  of day
+$x("//select[@id='day']")
+
+x-path of following siblings
+$x("//select[@id='day']/following-sibling::*")
+$x("//select[@id='day']/following-sibling::select[1]")---for month
+$x("//select[@id='day']/following-sibling::select[2]")----for Year
+
+
+X-path for preceding siblings
+$x("//select[@id='year']/preceding-sibling::select[1]")---for month
+$x("//select[@id='year']/preceding-sibling::select[2]")---for day
+
+For FirstName(In FireFox)
+**************************
+
+X-Paht == //div[@id='reg_form_box']/child::div[1]/descendant::div[1]/descendant::div[1]
+ 
+For Surname
+***********
+
+X-paht===//div[@id='reg_form_box']/child::div[1]/child::div[1]/child::div[2]

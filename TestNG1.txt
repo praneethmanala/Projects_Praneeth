@@ -1,0 +1,446 @@
+1) Googel
+
+package testNGtests;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class Sample2 {
+public static WebDriver driver;
+@Test	
+public void login(){
+System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+driver = new ChromeDriver();
+driver.get("https://www.google.co.in/");
+String title = driver.getTitle();
+Assert.assertEquals(title, "Google" );
+}
+}
+------------------------------------------------------------------------------
+
+2) GCRIT
+
+import java.io.File;
+import java.io.IOException;
+5) 
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+
+public class TestNG1 {
+public static WebDriver driver;
+	@Test(dataProvider = "testdata")
+	
+	public void login(String username , String password){
+		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver");
+		driver = new ChromeDriver();
+		driver.get("http://www.gcrit.com/build3/admin/login");
+		driver.findElement(By.xpath(".//*[@id='contentText']/table/tbody/tr[2]/td/form/table/tbody/tr[1]/td/input")).sendKeys(username);
+		driver.findElement(By.xpath(".//*[@id='contentText']/table/tbody/tr[2]/td/form/table/tbody/tr[2]/td/input")).sendKeys(password);
+		driver.findElement(By.xpath(".//*[@id='tdb1']")).click();
+		Assert.assertEquals("http://www.gcrit.com/build3/admin/index.php", driver.getCurrentUrl());
+		driver.close();
+	}
+	
+	
+	@DataProvider(name = "testdata")
+	public  Object [][] readExcel() throws BiffException, IOException {
+		
+		File f = new File("C:/Users/user/Desktop/DataDriven.xls");
+		Workbook w = Workbook.getWorkbook(f);
+		Sheet S = w.getSheet(0);
+		int rows = S.getRows();
+		int columns = S.getColumns();
+		
+		String inputdata[][] = new String [rows][columns];
+		for(int i=0; i<rows; i++){
+			for(int j=0; j<columns; j++){
+				Cell c=S.getCell(j,i);
+				inputdata[i][j] = c.getContents();
+	            System.out.println(inputdata[i][j]); 
+		    }
+	     }
+		return inputdata;
+	}
+---------------------------------------------------------------------------------------------------------------------------------------
+3) 
+package testNGtests;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+
+public class Datadriven {
+	@Test(dataProvider="testdata")
+	public void add(String val1 , String val2 , String val3){
+		int a = Integer.parseInt(val1);
+		int b = Integer.parseInt(val2);
+		int c = Integer.parseInt(val3);
+		int result = a+b+c;
+		System.out.println(result);
+	}
+
+     @DataProvider(name = "testdata")
+	public Object ReadExcel() throws BiffException, IOException{
+		
+	File f = new File("C:/Users/user/Desktop/DataDriven.xls");
+	Workbook w = Workbook.getWorkbook(f);
+	Sheet s = w.getSheet("Sheet1");
+	int rows = s.getRows();
+	int columns = s.getColumns();
+  // System.out.println(rows);
+   //System.out.println(columns);
+	
+	String inputdata[][] = new String [rows][columns];
+	 for(int i=0; i<rows ; i++){
+		 for(int j=0; j<columns; j++){
+			 Cell c = s.getCell(j,i);
+			 inputdata[i][j]= c.getContents();
+			 System.out.println(inputdata[i][j]);
+		 }
+	 }
+	return inputdata;
+	
+}
+	
+}	
+	------------------------------------------------------------------------------------------------------
+
+4) Sarvodaya (From Excel) Save different data in Storage Locatinon
+
+package testNGtests;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+
+public class SarvodayaTest1 {
+	
+	public static WebDriver driver;
+	
+	@Test(dataProvider = "testdata")
+	public void login(String SM, String STM){
+		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("http://sarvodaya.laksanasoft.com/");
+   	 driver.findElement(By.xpath(".//*[@id='txtUserName']")).sendKeys("laksanait");
+	       // Thread.sleep(3000);
+	        driver.findElement(By.xpath(".//*[@id='txtPassword']")).sendKeys("laksanait@123");
+	      //  Thread.sleep(2000);
+	        driver.findElement(By.xpath(".//*[@id='txtPassword']")).sendKeys("laksanait@123");
+	     //   Thread.sleep(2000);
+	        Select Dropdown = new Select(driver.findElement(By.xpath(".//*[@id='ddlCompanyName']")));
+	        Dropdown.selectByVisibleText("LAKSANA IT SOLUTIONS PRIVATE LIMITED");
+	      //  Thread.sleep(2000);
+	        driver.findElement(By.xpath(".//*[@id='btnLogin']")).click();
+	        driver.manage().window().maximize();
+	        driver.findElement(By.xpath(".//*[@id='Sales']/label")).click();
+	        driver.findElement(By.xpath(".//*[@id='Settings']/a/span[1]")).click();
+	        driver.findElement(By.xpath(".//*[@id='Settings']/ul/li[3]/a")).click();
+	        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_STeam_btnAdd']")).click();
+	        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtSaleManagerName']")).sendKeys(SM);
+	        Select drop = new Select(driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ddlSalesRegion']")));
+	        drop.selectByVisibleText("Southern");
+	        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtSalesTargetMonth']")).sendKeys(STM);
+	        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnSubmit']")).click();
+	        driver.switchTo().alert().accept();
+	        Assert.assertEquals("http://sarvodaya.laksanasoft.com/Sales_Marketing/SM_AddSales_Team.aspx", driver.getCurrentUrl());
+	        driver.close();
+	        
+	}
+	
+    @DataProvider(name="testdata")
+	public Object[][] readExcel() throws BiffException, IOException {
+		
+		File f = new File("C:/Users/user/Desktop/DataDriven.xls");
+        Workbook w = Workbook.getWorkbook(f);
+        Sheet s= w.getSheet("Sheet3");
+        int rows = s.getRows();
+        int columns = s.getColumns();
+        
+        
+        String inputdata[][] = new String [rows][columns];
+        for(int i=0;i<rows;i++){
+        	for(int j=0;j<columns;j++){
+        		Cell c=s.getCell(j,i);
+        		inputdata[i][j]=c.getContents();
+        		System.out.println(inputdata[i][j]);
+        	}
+        }
+		return inputdata;
+	}
+
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+5) Finished Goods Sarvodaya
+package testNGtests;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+
+    public class Datadriven {
+    	
+    	public static WebDriver driver;
+    	 @Test(dataProvider = "data")	
+    	    public void ProductMaster(String ProductCode, String Cavity, String Shotwt, String PcQty, String PcQty1, String PcQty500,String QrtpDay, String PName){
+    	                  System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+      	                   driver = new ChromeDriver();
+    	                   driver.get("http://sarvodaya.laksanasoft.com/");
+    	                   driver.findElement(By.xpath(".//*[@id='txtUserName']")).sendKeys("laksanait");
+	                       // Thread.sleep(3000);
+	                       driver.findElement(By.xpath(".//*[@id='txtPassword']")).sendKeys("laksanait@123");
+	                       //  Thread.sleep(2000);
+	                        driver.findElement(By.xpath(".//*[@id='txtPassword']")).sendKeys("laksanait@123");
+	                       //   Thread.sleep(2000);
+	                        Select Dropdown = new Select(driver.findElement(By.xpath(".//*[@id='ddlCompanyName']")));
+	                        Dropdown.selectByVisibleText("LAKSANA IT SOLUTIONS PRIVATE LIMITED");
+	                        //  Thread.sleep(2000);
+	                        driver.findElement(By.xpath(".//*[@id='btnLogin']")).click();
+   
+    	      
+    	    driver.manage().window().maximize();
+	        driver.findElement(By.xpath(".//*[@id='Sales']/label")).click();
+	        
+	        driver.findElement(By.xpath(".//*[@id='sales']/a/span[1]")).click();
+	        driver.findElement(By.xpath(".//*[@id='sales']/ul/li[3]/a")).click();
+	        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnAdd']")).click();
+	        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtprodcode']")).sendKeys(ProductCode);
+	        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtcavity']")).sendKeys(Cavity);
+	        //driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtcavity']")).sendKeys(Cavity);
+	        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtshotwt']")).sendKeys(Shotwt);
+	        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtshotwt']")).sendKeys(Shotwt);
+	        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtPktQty']")).sendKeys(PcQty);
+	        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txt1Pcswt']")).sendKeys(PcQty1);
+	        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txt500pcsgoodswt']")).sendKeys(PcQty500);
+	        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtqtyperday']")).sendKeys(QrtpDay);
+	        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_txtProdname']")).sendKeys(PName);
+	        driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_btnSave']")).click();
+	        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+	        driver.switchTo().alert().accept();
+	        driver.switchTo().alert().accept();
+	        Assert.assertEquals("http://sarvodaya.laksanasoft.com/Sales_Marketing/SM_Add_Plastic_FinishedGoods.aspx", driver.getCurrentUrl());
+		    driver.close();
+    }
+    
+    	@DataProvider(name = "data")
+    	public  Object [][] readExcel() throws BiffException, IOException {
+	
+    	File f = new File("C:/Users/user/Desktop/DataDriven.xls");
+    	Workbook w = Workbook.getWorkbook(f);
+    	Sheet s = w.getSheet("Sheet2");
+    	int rows = s.getRows();
+    	int columns = s.getColumns();
+    	
+    	
+    	String input[][]= new String [rows][columns];
+    	for(int i=0; i<rows; i++){
+    		for(int j=0 ; j<columns; j++){
+    			Cell c=s.getCell(j,i);
+    			input[i][j] = c.getContents();
+    			System.out.println(input[i][j]);
+    			
+    		}
+    	}
+		return input;
+    }
+    }
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+6) XML(Finished Goods and Storage location)
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite" >
+  <test name="Test">
+    <classes>
+      <class name="testNGtests.Datadriven"/>
+       <class name="testNGtests.SarvodayaTest2"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+7) FlipKart 
+
+package testNGtests;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.opera.OperaDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class Opera {
+public static WebDriver driver;
+	/*public void opera(){
+        System.setProperty("webdriver.opera.driver", "D:\\operadriver.exe");
+		
+		driver = new OperaDriver();
+		driver.get("http://sarvodaya.laksanasoft.com/");
+
+	}*/
+    @Test
+	public void chrome(){
+System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+		
+		 driver = new ChromeDriver();
+		//driver.get("http://sarvodaya.laksanasoft.com/");
+	}
+     @BeforeClass
+	 public void login() {
+	
+		Opera obj = new Opera();
+		obj.chrome();
+		//obj.opera();
+		driver.get("https://www.flipkart.com/");
+		driver.manage().window().maximize();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,500)", " ");
+     }
+     
+	 @AfterClass
+		public void close(){
+			driver.close();
+		}
+	
+		//driver.findElement(By.xpath(".//*[@id='container']/div/header/div[2]/div/ul/li[1]/a/span")).click();
+		//driver.findElement(By.xpath(".//*[@id='container']/div/header/div[2]/div/ul/li[1]/a/svg")).click();
+		//driver.findElement(By.xpath(".//*[@id='container']/div/header/div[2]/div/ul/li[1]/ul/li/ul/li[1]/ul/li[2]/a/span[1]")).click();
+		/*String price = driver.findElement(By.xpath(".//*[@id='container']/div/div[2]/div[2]/div[2]/div/div[2]/div[1]/div/div[1]/div/div[1]/span")).getText();
+		System.out.println(price);
+		driver.findElement(By.xpath(".//*[@id='container']/div/header/div[1]/div[2]/div/div/div[2]/form/div/div[1]/div/input")).sendKeys(price);
+		Thread.sleep(2000);
+		driver.findElement(By.xpath(".//*[@id='container']/div/header/div[1]/div[2]/div/div/div[2]/form/div/div[1]/div/input")).clear();
+*/	}
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+8) DifferentBrowsers
+
+package testNGtests;
+
+import java.util.Scanner;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.opera.OperaDriver;
+import org.testng.annotations.Test;
+
+public class DifferentBrowsers {
+	public static WebDriver driver;
+	
+	public void opera(){
+		System.setProperty("webdriver.opera.driver", "D:\\operadriver.exe");
+		driver = new OperaDriver();
+		driver.get("https://www.google.co.in/");
+
+	}
+   
+	public void chrome(){
+	System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+	driver = new ChromeDriver();
+	driver.get("https://www.irctc.co.in/eticketing/loginHome.jsf");
+	
+	}
+	
+	@Test(priority = 1)               
+	public void irctc(){
+		
+		DifferentBrowsers obj = new DifferentBrowsers();
+		obj.chrome();
+		driver.findElement(By.id("usernameId")).sendKeys("pannu21");
+		driver.findElement(By.className("loginPassword")).sendKeys("9491018111");
+		
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter Captcha");
+		String captcha = scan.nextLine();
+		
+		driver.findElement(By.className("loginCaptcha")).sendKeys(captcha);
+		driver.findElement(By.id("loginbutton")).click();
+
+	}
+    
+	@Test(priority = 2)
+	public void Google(){
+		DifferentBrowsers obj1 = new DifferentBrowsers();	
+	    obj1.opera();
+	}
+	
+	
+	}
+	
+----------------------------------------------------------------------------------------------------------------------------------------------	
+	
+9) Show alert after Login any application	
+
+System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+		driver = new ChromeDriver();
+        		
+        //Creating the JavascriptExecutor interface object by Type casting		
+        JavascriptExecutor js = (JavascriptExecutor)driver;		
+        
+        driver.get("http://sarvodaya.laksanasoft.com/");
+		driver.findElement(By.xpath(".//*[@id='txtUserName']")).sendKeys("laksanait");
+		driver.findElement(By.xpath(".//*[@id='txtPassword']")).sendKeys("laksanait@123");
+		driver.findElement(By.xpath(".//*[@id='txtPassword']")).sendKeys("laksanait@123");
+		Select Dropdown = new Select(driver.findElement(By.xpath(".//*[@id='ddlCompanyName']")));
+		Dropdown.selectByVisibleText("LAKSANA IT SOLUTIONS PRIVATE LIMITED");
+		driver.findElement(By.xpath(".//*[@id='btnLogin']")).click();
+		 js.executeScript("alert('Welcome to Sarvaodaya');");
+                 driver.swithto().alert().accept();
+--------------------------------------------------------------------------------------------------------------------
+

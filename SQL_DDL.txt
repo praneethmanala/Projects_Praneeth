@@ -1,0 +1,27 @@
+ 1.create database venky
+
+2.use  venky
+
+3.create table pemployees 
+(
+ eid int,
+ ename char(50)
+ )
+
+ 4.select * from pemployees
+
+5. select * from information_schema.columns where TABLE_NAME = 'pemployees'
+
+6. exec sp_rename 'pemployees','memployees'
+
+ select * from memployees
+
+ 7.select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='memployees'
+
+8. alter table memployees add add1 char(50),add2 char(50),add3 char(50)
+
+ 9.select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'memployees'
+
+ 10.alter table memployees alter column add1 varchar(100)
+
+ 11.exec sp_rename 'memployees.phoneno' , 'Mobileno'

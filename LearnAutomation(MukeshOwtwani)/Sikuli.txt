@@ -1,0 +1,38 @@
+package sikuliDemo;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Pattern;
+import org.sikuli.script.Screen;
+
+public class SikuliImage {
+
+	public static void main(String[] args) throws FindFailed {
+		// TODO Auto-generated method stub
+		
+		Screen screen = new Screen();
+		
+		Pattern image1 = new Pattern("E:\\Selenium_Setup\\Sikuli\\Image1.PNG");
+		Pattern image2 = new Pattern("E:\\Selenium_Setup\\Sikuli\\Image2.PNG");
+		Pattern image3 = new Pattern("E:\\Selenium_Setup\\Sikuli\\Image3.PNG");
+		Pattern image4 = new Pattern("E:\\Selenium_Setup\\Sikuli\\Image4.PNG");
+		Pattern image5 = new Pattern("E:\\Selenium_Setup\\Sikuli\\Image5.PNG");
+		
+		System.setProperty("webdriver.chrome.driver", "E://chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.google.co.in/");
+		//screen.wait(image1, 10);
+		screen.click(image1);
+		screen.type(image2,"praneethmanala");
+		screen.click(image3);
+		screen.type(image4,"Praneeth545@15454");
+		screen.click(image5);
+		
+		
+		
+
+	}
+
+}

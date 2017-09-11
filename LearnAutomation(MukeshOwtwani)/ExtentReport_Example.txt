@@ -1,0 +1,69 @@
+package advancereports;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.Test;
+
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+
+public class VerifyExtentReport {
+	
+        ExtentReports report;
+		ExtentTest logger;
+		WebDriver driver;
+
+		@Test
+		public void VerifyBlogTitle1() throws InterruptedException
+		{   
+			
+			report =new ExtentReports("E:\\Selenium_Setup\\LearnAutomation1.html",true);
+			
+			logger =report.startTest("VerifyBlogTitle1");
+			
+			System.setProperty("webdriver.chrome.driver", "E:\\chromedriver.exe");
+			driver = new ChromeDriver();
+			logger.log(LogStatus.INFO,"Browser is Started");
+			
+			driver.manage().window().maximize();
+			
+			driver.get("https://www.youtube.com/");
+			Thread.sleep(5000);
+			logger.log(LogStatus.INFO, "Application is up and running");
+			String title =driver.getTitle();
+			Assert.assertTrue(title.contains("Google"));
+			logger.log(LogStatus.PASS, "Title Verified");
+		}
+		
+		@AfterMethod
+		public void Teardown(ITestResult result)
+		{
+			if(result.getStatus()==ITestResult.FAILURE)
+			{
+				String Screenpath= UtilityNew.capturescreenshot1(driver, "praneethKumar");
+		     	logger.log(LogStatus.FAIL,result.getThrowable());	
+			    logger.log(LogStatus.FAIL, "Screen Shot below : "+logger.addScreenCapture(Screenpath));
+			}
+			report.endTest(logger);
+		}
+		
+			@AfterTest
+			public void endReport()
+			{
+				report.flush();
+				
+			}
+			
+
+			//driver.get("E:\\Selenium_Setup\\LearnAutomation.html");
+		
+		}
+	
+
+
+

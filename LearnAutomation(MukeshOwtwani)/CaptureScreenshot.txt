@@ -1,0 +1,46 @@
+Select src----->Right click------> New------>Package---->Scrennshot(Any Name)
+In that Package(Screenshot)------>right click------->new------>class------>Utility(Any Name)
+
+************************************************************************************
+
+
+
+Select Project--->Right click------> New------>Folder----->Screnshots(Any Name)
+Every time Refresh Project (Newly saved screenshots will appear)
+     
+
+
+
+*********************************************************************************************************
+package screenshot;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+
+public class Utility {
+
+	public static void capturescreenshot(WebDriver driver,String screenshotname){
+		
+		try {
+			TakesScreenshot ts=(TakesScreenshot)driver;
+			File source =ts.getScreenshotAs(OutputType.FILE);
+			
+			FileUtils.copyFile(source,new File("./Screenshots/"+screenshotname+".png"));
+			System.out.println("ScreenShot is taken");
+		} catch (Exception e) {
+			System.out.println("Exception while taking screenshot"+e.getMessage());
+			
+		} 
+		}
+		} 
+		
+	// In any time we can use this Sceenshot code as
+   // utility.captureScreenshot(driver,"any ScreenshotName"
+	
+

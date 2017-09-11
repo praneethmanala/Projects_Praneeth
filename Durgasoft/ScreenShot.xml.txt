@@ -1,0 +1,72 @@
+XML file
+-------
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="false">
+<listeners>
+      <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+      <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+      <listener class-name="com.durgasoft.paralleltest.Customlisteners"/>
+      
+  </listeners>
+
+  <test name="Test">
+    <classes>
+      <class name="com.durgasoft.paralleltest.Screenshot"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+********************************************************************************************************************
+package com.durgasoft.paralleltest;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.testng.ITestResult;
+import org.testng.TestListenerAdapter;
+import org.testng.annotations.Test;
+
+public class Customlisteners extends TestListenerAdapter{
+      
+	 @Test
+      public void onTestFailure(ITestResult tr){
+    	  File scrFile = ((TakesScreenshot)Screenshot.driver).getScreenshotAs(OutputType.FILE);
+    	  
+    	  try {
+			FileUtils.copyFile(scrFile, new File("E:\\Screenshots\\"+tr.getName()+".png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	  
+      }
+	}
+
+
+**********************************************************************************************************************
+package com.durgasoft.paralleltest;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class Screenshot {
+
+	
+	
+		public static WebDriver driver;
+		
+		@Test
+		public void Tc_1(){
+			
+			System.setProperty("webdriver.chrome.driver", "E:\\chromedriver.exe");
+			driver = new ChromeDriver();
+			driver.get("https://www.google.co.in");
+			Assert.assertEquals("Test", "TEst123");
+
+	}
+
+}

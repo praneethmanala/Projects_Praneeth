@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="false">
+  <test name="Test">
+  <groups>
+  <run>
+  <exclude name="smoke"/>
+  <include name="regression"/>
+  
+  </run>
+      </groups>
+        <classes>
+      <class name="com.durgasoft.grouptest.Class1"/>
+      <class name="com.durgasoft.grouptest.Class2"/>
+      
+    </classes>
+    
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+*****************************************************************************************************
+package com.durgasoft.grouptest;
+
+import org.testng.annotations.Test;
+
+public class Class2 {
+
+	@Test(groups ={"smoke"})
+	public void Tc_1(){
+		System.out.println("This is 3rd smoke test case");
+		
+	}
+	@Test(groups ={"regression"})
+	public void Tc_2(){
+		System.out.println("This is 2nd regression test case");
+		
+	}
+	@Test(groups ={"smoke"})
+	public void Tc_3(){
+		System.out.println("This is 4th smoke test case");
+		
+	}
+	
+}
+**********************************************************************************************************

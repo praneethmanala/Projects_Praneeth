@@ -1,0 +1,90 @@
+Program 1
+*********
+package com.wordpress.pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+
+public class LoginpageNew {
+	
+	//Constructor
+	WebDriver driver;
+	public LoginpageNew(WebDriver idriver){
+		this.driver=idriver;
+	}
+	
+	@FindBy(id="user_login")
+	WebElement username;
+	
+	@FindBy(how=How.ID ,using="user_pass")
+    WebElement password;
+	
+	@FindBy(how=How.XPATH , using =".//input[@id='wp-submit']")
+    WebElement submitbutton;
+	
+	public void login_Wordpress(String uid ,String pass)
+	{
+		username.sendKeys(uid);
+		password.sendKeys(pass);
+		submitbutton.click();
+	}
+}
+**************************************************************************************************
+Programe 2
+**********
+package Helper;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class WebBrowser {
+
+	static WebDriver driver;
+	public static WebDriver startBroser(String browsername,String url)
+	{
+		if(browsername.equals("firefox")){
+			driver = new FirefoxDriver();
+		}
+		else if(browsername.equals("Chrome")){
+			System.setProperty("webdriver.chrome.driver", "E:\\chromedriver.exe");
+			driver = new ChromeDriver();
+			
+		}
+		driver.manage().window().maximize();
+		driver.get(url);
+		return driver;
+	}
+	
+}
+************************************************************************************************************
+Programme 3
+***********
+/**
+ * 
+ */
+package com.wordpress.testcases;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
+
+import com.wordpress.pages.LoginpageNew;
+
+import Helper.WebBrowser;
+
+
+public class VerifyvalidLogin {
+	@Test
+	public void checkvaliduser()
+	{
+		WebDriver driver=WebBrowser.startBroser("Chrome", "http://demosite.center/wordpress/wp-login.php");
+		LoginpageNew login=PageFactory.initElements(driver,LoginpageNew.class );
+		login.login_Wordpress("admin", "demo123");
+	}
+	
+
+}
+*******************************************************************************************************************

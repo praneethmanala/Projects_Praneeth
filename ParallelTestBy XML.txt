@@ -1,0 +1,69 @@
+XML File
+--------
+<suite name="SuiteName" parallel="tests">
+  <test name="ClassA">
+    <classes>
+      <class name="praneethm.ClassA"/>
+    </classes>
+  </test> 
+   <test name="ClassB">
+    <classes>
+      <class name="praneethm.ClassB"/>
+    </classes>
+  </test> 
+   <test name="ClassC">
+    <classes>
+      <class name="praneethm.ClassC"/>
+    </classes>
+  </test> 
+</suit>
+------------------------------------------------------------------------------------------------------
+
+ClassA
+-------
+package praneethm;
+
+import org.testng.annotations.Test;
+
+public class ClassA {
+  @Test
+  public void Test1() throws InterruptedException {
+	  System.out.println("start classA");
+	  Thread.sleep(2000);
+	  System.out.println("End classA");   
+  }
+}
+------------------------------------------------------------------------------
+ClassB
+------
+package praneethm;
+
+import org.testng.annotations.Test;
+
+public class ClassB {
+
+	 @Test
+	  public void Test2() throws InterruptedException {
+		  System.out.println("start classB");
+		  Thread.sleep(2000);
+		  System.out.println("End classB");
+	
+}
+}
+------------------------------------------------------------------------------
+ClassC
+------
+package praneethm;
+
+import org.testng.annotations.Test;
+
+public class ClassC {
+
+	 @Test
+	  public void Test3() throws InterruptedException {
+		  System.out.println("start classC");
+		  Thread.sleep(2000);
+		  System.out.println("End classC");
+}
+}
+-----------------------------------------------------------------------------

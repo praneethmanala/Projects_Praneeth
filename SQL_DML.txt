@@ -1,0 +1,15 @@
+Select * from semployee
+
+Insert:
+insert into semployee (eid,ename,phoneno,add1)
+values(1,'praneeth',949,'panjagutta')
+insert into semployee values (3,'Sai',0123,'S R Nagar')
+
+Update :
+update semployee set ename = 'santhosh' where eid = 3 
+insert into semployee (eid,ename) values (4,'TNR')
+update semployee set phoneno ='234' where ename = 'TNR'
+
+
+Delete:
+delete from semployee where eid = 4

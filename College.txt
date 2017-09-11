@@ -1,0 +1,104 @@
+1) Examination cell---- Internal---Create New Internal Exam
+-------------------------------------------------------------
+package sample1;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Programe4 {
+
+	public static void main(String[] args) throws InterruptedException {
+	    System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+	    WebDriver driver= new ChromeDriver();
+	    driver.get("http://test2.laksanasoft.com/login.aspx");
+	    driver.findElement(By.id("txtUserName")).sendKeys("admin");
+	    driver.findElement(By.id("txtPassword")).sendKeys("admin@1");
+	    driver.findElement(By.id("btnLogin")).click();
+	    Thread.sleep(2000);
+	    driver.findElement(By.xpath("html/body/div[1]/aside[1]/section/ul/li[6]/a/span")).click();
+	    Thread.sleep(1000);
+	    driver.findElement(By.xpath("html/body/div[1]/aside[1]/section/ul/li[6]/ul/li[2]/a")).click();
+	    Thread.sleep(1000);
+	    driver.findElement(By.id("ContentPlaceHolder1_lnkCreateNewInternalExam")).click();
+	   Select dropdown= new Select (driver.findElement(By.id("ContentPlaceHolder1_ddlRegulation")));
+	   dropdown.selectByVisibleText("R15");
+	 
+	   driver.findElement(By.id("ContentPlaceHolder1_txtnameoftheexamination")).sendKeys("INTERNAL");
+	   driver.findElement(By.id("ContentPlaceHolder1_txtmonthYear")).sendKeys("November 2015");
+	   
+	   Select dropdown1=new Select(driver.findElement(By.id("ContentPlaceHolder1_ddlProgramme")));
+	   dropdown1.selectByVisibleText("B.A");
+	   
+	   Select dropdown2= new Select(driver.findElement(By.id("ContentPlaceHolder1_ddlCourse")));
+	   dropdown2.selectByVisibleText("HEP");
+	   Thread.sleep(2000);
+	   	
+	   Select dropdown3= new Select(driver.findElement(By.id("ContentPlaceHolder1_ddlCourseYearSem")));
+	   dropdown3.selectByIndex(1);
+	   
+	   driver.findElement(By.id("ContentPlaceHolder1_txtStartDate")).sendKeys("11-12-2015");
+	   driver.findElement(By.id("ContentPlaceHolder1_txtEndDate")).sendKeys("15-12-2015");
+Click on [LIST]
+----------------
+	   driver.findElement(By.id("ContentPlaceHolder1_btnSubmit")).click(); 
+
+
+Click on CIA Marks Entry
+-----------------------
+           Select regulation=new Select(driver.findElement(By.id("ContentPlaceHolder1_ddlRegulation")));
+	   regulation.selectByVisibleText("R15");
+	   
+	   Select programe=new Select(driver.findElement(By.id("ContentPlaceHolder1_ddlProgramme")));
+	   programe.selectByIndex(1);
+	   
+	   Select course=new Select(driver.findElement(By.id("ContentPlaceHolder1_ddlCourse")));
+	   course.selectByIndex(1);
+	   
+	   Select courseyear=new Select(driver.findElement(By.id("ContentPlaceHolder1_ddlCourseYearSem")));
+	   courseyear.selectByIndex(1);
+	   
+	   Select selection=new Select(driver.findElement(By.id("ContentPlaceHolder1_ddlSection")));
+	   selection.selectByVisibleText("A");
+	   
+	   driver.findElement(By.id("ContentPlaceHolder1_btnOk")).click();
+	   Thread.sleep(2000);
+	   
+	   driver.findElement(By.id("ContentPlaceHolder1_grdInternal_lnkCIAMarksEntry_0")).click();
+	   
+	   JavascriptExecutor jse = (JavascriptExecutor)driver;
+	   jse.executeScript("window.scrollBy(0,350)", "");
+	   
+	   Select Subjects= new Select(driver.findElement(By.id("ContentPlaceHolder1_ddlSubjects")));
+	   Subjects.selectByIndex(1);
+	   Thread.sleep(1000);
+	   
+	   driver.findElement(By.id("ContentPlaceHolder1_btnOk")).click();
+	   Thread.sleep(1000);
+	   
+	   driver.findElement(By.id("ContentPlaceHolder1_btnCiaStudentsMarks")).click();
+	   Thread.sleep(2000);
+	   
+	   JavascriptExecutor jse1 = (JavascriptExecutor)driver;
+	   jse1.executeScript("window.scrollBy(0,800)", "");
+	   
+MARKS ENTRY
+-----------
+	   driver.findElement(By.id("ContentPlaceHolder1_GrdStudents_txtMarks_12")).sendKeys("11");
+	   driver.findElement(By.id("ContentPlaceHolder1_GrdStudents_txtMarks_13")).sendKeys("11");
+	   driver.findElement(By.id("ContentPlaceHolder1_GrdStudents_txtMarks_14")).sendKeys("11");
+	   driver.findElement(By.id("ContentPlaceHolder1_GrdStudents_txtMarks_15")).sendKeys("11");
+	   driver.findElement(By.id("ContentPlaceHolder1_GrdStudents_txtMarks_16")).sendKeys("11");
+	   
+	   JavascriptExecutor jse2 = (JavascriptExecutor)driver;
+	   jse2.executeScript("window.scrollBy(0,5000)", "");
+	   
+	}
+	
+
+}
+
+
+-----------------------------------------------------------------------------------------------------------------

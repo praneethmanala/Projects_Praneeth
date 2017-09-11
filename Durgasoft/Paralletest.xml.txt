@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="tests">
+  <test name="Firefox">
+    <classes>
+      <class name="com.durgasoft.com.durgasoft.paralleltest.ParallelTest2"/>
+      <class name="com.durgasoft.com.durgasoft.paralleltest.ParallelTest1"/>
+      
+    </classes>
+  </test> <!-- Test -->
+ <test name="Chrome">
+    <classes>
+      <class name="com.durgasoft.com.durgasoft.paralleltest.ParallelTest2"/>
+      <class name="com.durgasoft.com.durgasoft.paralleltest.ParallelTest1"/>
+      
+    </classes>
+  </test> <!-- Test -->
+
+
+</suite> <!-- Suite -->

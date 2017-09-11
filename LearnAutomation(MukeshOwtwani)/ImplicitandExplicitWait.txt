@@ -1,0 +1,64 @@
+package com.laksana.durgasoft.controls;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class ImplicitWait {
+	
+	public static WebDriver driver;//ImplicitWait
+	*************************************************************************
+	public static void imlicitwait(WebDriver driver){
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+          //Explicit Wait
+*********************************************************************************
+	public static void ExplictWait(WebDriver driver,String text){
+		(new WebDriverWait(driver,10)).until(ExpectedConditions.elementToBeClickable(By.partialLinkText(text)));
+	}
+        //FluentWait
+**************************************************************************************
+FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+     .withTimeout(30, TimeUnit.SECONDS)
+     .pollingEvery(5, TimeUnit.SECONDS)
+     .ignoring(NoSuchElementException.class);
+
+     WebElement element = wait.until(new Function<WebDriver, WebElement>() {
+     public WebElement apply(WebDriver driver) {
+    	 WebElement ele=driver.findElement(By.xpath(".//*[@id='demo']"));
+    	 String value=ele.getAttribute("innetHTML");
+    	 if(value.equalsIgnoreCase("WebDriver")){
+    		 return ele;
+    	 }
+    	 else{
+    		 System.out.println("Text "+value);
+    		 return null;
+    	 }
+    	 
+     
+   }
+ });
+      System.out.println("Element is "+element.isDisplayed());
+	}
+********************************************************************
+
+	public static void main(String[] args) {
+		
+	System.setProperty("webdriver.chrome.driver", "E:\\chromedriver.exe");
+	driver=new ChromeDriver();
+	driver.get("https://www.google.co.in");
+	driver.findElement(By.name("q")).sendKeys("Execute Automation");
+	driver.findElement(By.name("btnK")).sendKeys(Keys.ENTER);
+        //imlicitwait(driver);
+	//ExplictWait(driver, "Execute Automation – Automation Testing Automated (3 million+ view)");
+	driver.findElement(By.partialLinkText("Execute Automation – Automation Testing Automated")).click();
+	
+	
+	}
+
+}

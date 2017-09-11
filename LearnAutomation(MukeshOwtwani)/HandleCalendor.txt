@@ -1,0 +1,32 @@
+package selenium1;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class HandleCalender {
+
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.chrome.driver","E:\\chromedriver.exe");
+		WebDriver driver =new ChromeDriver();
+		driver.get("http://www.tsrtconline.in");
+		driver.findElement(By.id("txtJourneyDate")).click();
+		List<WebElement> dates=driver.findElements(By.xpath("//div[@id='ui-datepicker-div']/div[1]//td"));
+		int Total_dates=dates.size();
+		System.out.println("Total No of Dates are "+Total_dates);
+		for(int i=0 ;i<Total_dates;i++)
+		{
+			String date=dates.get(i).getText();
+			if(date.equals("31")){
+				dates.get(i).click();
+				break;
+			}
+		}
+
+	}
+
+}

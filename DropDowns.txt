@@ -1,0 +1,81 @@
+
+package selenium;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+
+public class Dropdown {
+
+	
+	public static void main(String[]args) throws InterruptedException{
+		
+		System.setProperty("webdriver.chrome.driver", "E://chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.facebook.com");
+		driver.manage().window().maximize();
+		WebElement month_dd=driver.findElement(By.id("month"));
+		Select month=new Select(month_dd);
+		
+		WebElement value=month.getFirstSelectedOption();
+		System.out.println("Before selected is "+value.getText());
+		
+		
+		month.selectByVisibleText("Aug");
+		
+		Thread.sleep(1000);
+		
+	    month.selectByIndex(2);
+	    
+	    WebElement value1=month.getFirstSelectedOption();
+		System.out.println("Before selected is "+value1.getText());
+
+
+
+********************************************************************************************************************
+package selenium;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+
+public class Dropdown {
+
+	
+	public static void main(String[]args){
+		
+		System.setProperty("webdriver.chrome.driver", "E://chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.facebook.com");
+		driver.manage().window().maximize();
+		WebElement month_dd=driver.findElement(By.id("month"));
+		Select month=new Select(month_dd);
+		
+		month.getFirstSelectedOption();
+		System.out.println("Before selected "+month);
+		
+		List<WebElement> month_list=month.getOptions();
+		
+		int total_month=month_list.size();
+		Assert.assertEquals(total_month, 13);
+		System.out.println("Total months are "+total_month);
+		
+		
+		for(WebElement ele:month_list ){
+			String month_name=ele.getText();
+			System.out.println("Month Names are "+month_name);
+			
+		}
+
+	}
+}

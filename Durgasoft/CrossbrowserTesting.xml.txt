@@ -1,0 +1,54 @@
+XML File
+--------
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="tests">
+  <test name="chrome">
+    <classes>
+      <parameter name ="myBrowser" value="chrome"/>
+            <class name="com.durgasoft.paralleltest.CrossBrowser"/>
+      
+    </classes>
+  </test> <!-- Test -->
+ <test name="Chrome">
+    <classes>
+          <parameter name ="myBrowser" value="ie"/>
+    
+      <class name="com.durgasoft.paralleltest.CrossBrowser"/>
+      
+    </classes>
+  </test> <!-- Test -->
+
+
+</suite> <!-- Suite -->
+******************************************************************************************************
+package com.durgasoft.paralleltest;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class CrossBrowser {
+
+	public static WebDriver driver;
+	
+	
+	@Parameters("myBrowser")
+	@Test
+	public void crosstest(String myBrowser){
+		
+		if(myBrowser.equalsIgnoreCase("chrome")){
+			System.setProperty("webdriver.chrome.driver", "E://chromedriver.exe");
+			driver = new ChromeDriver();
+			
+		}else if(myBrowser.equalsIgnoreCase("ie")){
+			System.setProperty("webdriver.ie.driver", "E://IEDriverServer.exe");
+			driver = new InternetExplorerDriver();
+			
+		}
+		driver.get("https://www.google.co.in");	
+	}
+	
+}
+**********************************************************************************************************

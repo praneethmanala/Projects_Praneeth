@@ -1,0 +1,85 @@
+Login
+--------
+package selenium;
+
+import java.net.URL;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Sample1 {
+	 public static WebDriver driver;
+	String url;
+	String url2;
+	 public void login() throws InterruptedException{
+		 System.setProperty("webdriver.chrome.driver", "E:\\chromedriver.exe");
+			driver = new ChromeDriver();
+			driver.get("http://www.gcrit.com/build3/admin/");
+			driver.findElement(By.name("username")).sendKeys("admin");
+			driver.findElement(By.name("password")).sendKeys("admin@123");
+			Thread.sleep(5000);
+	        driver.findElement(By.id("tdb1")).click();
+	       String url= driver.getCurrentUrl();
+	       System.out.println(url);
+	        if(url.equals("http://www.gcrit.com/build3/admin/index.php")){
+	    	   
+	    	   driver.findElement(By.linkText("Online Catalog")).click();
+	    	   String url2=driver.getCurrentUrl();
+	    	   System.out.println(url2);
+	    	   System.out.println("Test is Passed");
+ 	       }
+	       else{
+	    	   System.out.println("Test is Failed");
+	       }
+ }
+		 public void login2() throws InterruptedException{
+			 	Thread.sleep(3000);
+	
+			driver.findElement(By.linkText("banana")).click();
+		}
+		
+	
+	 public static void main (String []args) throws InterruptedException{
+	   
+		 Sample1 obj =new Sample1();
+		 obj.login();
+		 obj.login2();
+		 
+}
+}
+----------------------------------------------------------------------------------------------------------
+Login_TestNG
+-------------
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class Sample1TestNg {
+	 public static WebDriver driver;
+       
+	  @Test
+       public void login() throws InterruptedException{
+	   System.setProperty("webdriver.chrome.driver", "E:\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("http://www.gcrit.com/build3/admin/");
+		driver.findElement(By.name("username")).sendKeys("admin");
+		driver.findElement(By.name("password")).sendKeys("admin@123");
+ 		Thread.sleep(5000);
+       driver.findElement(By.id("tdb1")).click();
+      String url= driver.getCurrentUrl();
+      System.out.println(url);
+      Assert.assertEquals(url, "http://www.gcrit.com/build3/admin/index.php");
+      driver.findElement(By.linkText("Online Catalog")).click();
+      System.out.println("Test is Passed");
+      String url1 = driver.getCurrentUrl();
+      Assert.assertEquals(url1, "http://www.gcrit.com/build3/");
+      driver.findElement(By.linkText("banana")).click();
+      System.out.println("Test1 is Passed");
+     }
+}
+----------------------------------------------------------------------------------------------------------
